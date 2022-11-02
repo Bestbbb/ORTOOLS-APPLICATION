@@ -1,5 +1,6 @@
 package demo.domain;
 
+import com.google.ortools.sat.IntervalVar;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -10,19 +11,14 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class Timeslot {
 
-    private DayOfWeek dayOfWeek;
+    private Integer shiftCount;
+//    private DayOfWeek dayOfWeek;
     private LocalTime startTime;
     private LocalTime endTime;
+    private IntervalVar interval;
 
 
-    public Timeslot(DayOfWeek dayOfWeek, LocalTime startTime) {
-        this(dayOfWeek, startTime, startTime.plusMinutes(50));
-    }
 
-    @Override
-    public String toString() {
-        return dayOfWeek + " " + startTime;
-    }
 
 
 }

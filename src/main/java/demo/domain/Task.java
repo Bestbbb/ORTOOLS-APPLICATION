@@ -2,6 +2,7 @@ package demo.domain;
 
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +72,18 @@ public class Task extends TaskOrResource {
     private Task preTask;
 
     private Integer duration;
+
+    private BigDecimal timeSlotDuration;
+
+    private BigDecimal singleTimeSlotSpeed;
+
+    private Integer minutesDuration;
+
+    private String orderId;
+
+    private Integer halfHourDuration;
+
+    private Integer hourDuration;
 
     private LocalDateTime taskBeginTime = LocalDateTime.of(2022, 10, 1, 0, 0, 0);
 

@@ -12,7 +12,7 @@
 // limitations under the License.
 
 // [START program]
-package com.google.ortools.sat.samples;
+package com.plan.project;
 // [START import]
 import static java.lang.Math.max;
 
