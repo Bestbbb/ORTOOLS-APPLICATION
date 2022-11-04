@@ -14,13 +14,20 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class DataGenerator {
-    static String FILE_PATH = "json/input_data.json";
+    static String FILE_PATH = "json/input_2.json";
     static Input input;
-
+    public final static String OUTPUT_PATH = "json/output.json";
+    public final static String RESULT_PATH = "D:\\result.json";
     static {
         input = LoadFile.readJsonFile(FILE_PATH);
     }
+    public static void writeObjectToFile(Object output) {
+        LoadFile.writeJsonFile(output, OUTPUT_PATH);
+    }
 
+    public static void writeResult(Object output) {
+        LoadFile.writeJsonFile(output, RESULT_PATH);
+    }
 
     public static List<ResourceItem> generateResources() {
         List<ResourceItem> resourceItemList = new ArrayList<>();
@@ -29,6 +36,7 @@ public class DataGenerator {
         resourcePool.forEach(each -> {
             ResourceItem available = each.getAvailableList().get(0);
             available.setResourcePoolId(each.getId());
+            System.out.println();
             resourceItemList.add(available);
 
         });
@@ -38,6 +46,7 @@ public class DataGenerator {
     public static List<ManufacturerOrder> generateOrderList() {
         return input.getManufacturerOrderList();
     }
+
 
 
     public static List<Task> generateTaskList() {
@@ -172,7 +181,9 @@ public class DataGenerator {
         {
             if(task.getNextTask()!=null){
 //                System.out.println(task.getHalfHourDuration());
-                System.out.println(task.getId() +" next: "+ task.getNextTask().getId()+"Half hour duration:"+task.getHalfHourDuration());
+                System.out.println(task.getId() +" next: "+ task.getNextTask().getId()+" Hour duration:"+task.getHourDuration()
+
+                +"Resource:"+task.getRequiredResourceId());
             }
         });
         return taskList;
@@ -299,8 +310,9 @@ public class DataGenerator {
 //        System.out.println(Math.ceil(52.0 / 17));
 //        List<ManufacturerOrder> manufacturerOrders = DataGenerator.generateOrderList();
         List<Task> taskList = DataGenerator.generateTaskList();
+        System.out.println(taskList.size());
         for (Task task : taskList) {
-//            System.out.println(task.getMinutesDuration());
+            System.out.println(task.getId());
         }
 //        List<ResourceItem> resourceItems = DataGenerator.generateResources();
 //        resourceItems.forEach(i->System.out.println(i.toString()));

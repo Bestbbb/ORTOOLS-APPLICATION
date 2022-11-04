@@ -17,7 +17,27 @@ public class LoadFile {
 
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoadFile.class);
+    public static void writeJsonFile(Object output, String path) {
+        String jsonString = convertObjectToJSON(output); // job转string
+        write(jsonString, path);
+    }
 
+    public static String convertObjectToJSON(Object object) {
+        return JSON.toJSONString(object);
+    }
+
+    public static void write(String str, String path) {
+
+
+        try (FileWriter writer = new FileWriter(path)) {
+            writer.write("");//清空原文件内容
+            writer.write(str);
+            writer.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
     public static void saveJson(String filePath) {
         String writeString = JSON.toJSONString(SerializerFeature.PrettyFormat);
         LOGGER.info(writeString);
@@ -84,7 +104,8 @@ public class LoadFile {
     }
 
     public static void main(String[] args) {
-        System.out.println(LoadFile.readJsonFile("json/input_1.json"));
+        saveJson("/22.json");
+//        System.out.println(LoadFile.readJsonFile("json/input_1.json"));
     }
 
 
